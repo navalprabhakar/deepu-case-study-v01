@@ -8,7 +8,7 @@ import java.util.Locale;
 
 public class Test {
   public static void main(String[] args) {
-    String dateTimeString = "2024-02-25 07:10:13 PM";
+    String dateTimeString = "2024-02-25 07:10:13 AM";
 
     // Define a custom DateTimeFormatter with the pattern including AM/PM marker
     DateTimeFormatter formatter = new DateTimeFormatterBuilder().appendPattern("yyyy-MM-dd hh:mm:ss a")
