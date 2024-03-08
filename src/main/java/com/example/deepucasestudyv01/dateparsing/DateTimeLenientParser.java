@@ -3,6 +3,7 @@ package com.example.deepucasestudyv01.dateparsing;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
@@ -14,6 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
+
+import static java.time.temporal.ChronoUnit.DAYS;
 
 @Component
 @Slf4j
@@ -92,8 +95,8 @@ public class DateTimeLenientParser implements DateTimeParser {
   }
 
   @Override
-  public int periodDaysBetween(LocalDate firstDate, LocalDate secondDate) {
-    int periodDays = Period.between(firstDate, secondDate).getDays();
+  public long periodDaysBetween(LocalDate firstDate, LocalDate secondDate) {
+    long periodDays = DAYS.between(firstDate, secondDate);
     log.info(
         "Successfully calculated period days between date inputs- {}, {} as {}",
         firstDate,
@@ -103,8 +106,8 @@ public class DateTimeLenientParser implements DateTimeParser {
   }
 
   @Override
-  public int periodDaysBetween(LocalDateTime firstDate, LocalDateTime secondDate) {
-    int periodDays = Period.between(firstDate.toLocalDate(), secondDate.toLocalDate()).getDays();
+  public long periodDaysBetween(LocalDateTime firstDate, LocalDateTime secondDate) {
+    long periodDays = DAYS.between(firstDate.toLocalDate(), secondDate.toLocalDate());
     log.info(
         "Successfully calculated period days between date inputs- {}, {} as {}",
         firstDate,
@@ -114,12 +117,11 @@ public class DateTimeLenientParser implements DateTimeParser {
   }
 
   @Override
-  public int periodDaysBetween(String firstDate, String secondDate) {
-    int periodDays =
-        Period.between(
+  public long periodDaysBetween(String firstDate, String secondDate) {
+    long periodDays =
+            DAYS.between(
                 this.fromDateTime(firstDate).toLocalDate(),
-                this.fromDateTime(secondDate).toLocalDate())
-            .getDays();
+                this.fromDateTime(secondDate).toLocalDate());
     log.info(
         "Successfully calculated period days between date inputs- {}, {} as {}",
         firstDate,
@@ -129,8 +131,8 @@ public class DateTimeLenientParser implements DateTimeParser {
   }
 
   @Override
-  public int periodDaysExpiredBy(LocalDateTime eventDate) {
-    int expiredByDays =
+  public long periodDaysExpiredBy(LocalDateTime eventDate) {
+    long expiredByDays =
         this.periodDaysBetween(eventDate.toLocalDate(), LocalDateTime.now().toLocalDate());
     log.info(
         "Successfully calculated period days expired by since date input- {} as {}",
@@ -140,8 +142,8 @@ public class DateTimeLenientParser implements DateTimeParser {
   }
 
   @Override
-  public int periodDaysExpiredBy(String eventDate) {
-    int expiredByDays =
+  public long periodDaysExpiredBy(String eventDate) {
+    long expiredByDays =
         this.periodDaysBetween(this.fromDateTime(eventDate).toLocalDate(), LocalDate.now());
     log.info(
         "Successfully calculated period days expired by since date input- {} as {}",

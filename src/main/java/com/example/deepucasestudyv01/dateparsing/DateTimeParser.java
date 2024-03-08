@@ -7,15 +7,15 @@ import java.util.List;
 public interface DateTimeParser {
     LocalDateTime fromDateTime(String inputDate);
 
-    int periodDaysBetween(LocalDate firstDate, LocalDate secondDate);
+    long periodDaysBetween(LocalDate firstDate, LocalDate secondDate);
 
-    int periodDaysBetween(LocalDateTime firstDate, LocalDateTime secondDate);
+    long periodDaysBetween(LocalDateTime firstDate, LocalDateTime secondDate);
 
-    int periodDaysBetween(String firstDate, String secondDate);
+    long periodDaysBetween(String firstDate, String secondDate);
 
-    int periodDaysExpiredBy(LocalDateTime eventDate);
+    long periodDaysExpiredBy(LocalDateTime eventDate);
 
-    int periodDaysExpiredBy(String eventDate);
+    long periodDaysExpiredBy(String eventDate);
 
     List<String> sampleSupportedDates();
 }

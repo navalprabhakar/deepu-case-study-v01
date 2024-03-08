@@ -24,8 +24,8 @@ public class DateTimeResponse {
     private String inputSecondDateTime;
     private LocalDateTime parsedFirstDateInStandardJavaFormat;
     private LocalDateTime parsedSecondDateInStandardJavaFormat;
-    private Integer periodDaysBetweenFirstSecondDates;
-    private Integer periodDaysExpiredSinceFirstDate;
+    private Long periodDaysBetweenFirstSecondDates;
+    private Long periodDaysExpiredSinceFirstDate;
 
     private List<String> sampleSupportedDates;
 
